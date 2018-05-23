@@ -9,5 +9,8 @@ router.route('/client/save')
 
 router.route('/client/find')
     .get(controller.get)
+
+router.route('/client/remove')
+    .post(controller.remove)
     
 module.exports = router

@@ -9,11 +9,9 @@ const ClientModel = Mongoose.model('clients', clientSchema)
 
 function ClientSchema(options){
     var db
-    
     if (!options.db) {
         throw new Error('Options.db is required')
     }
-    
     db = options.db
 
     return {
@@ -26,6 +24,12 @@ function ClientSchema(options){
 
         get: function(searchParam, callback){
             db.get(ClientModel, searchParam, function(result){
+                callback(result)
+            })
+        },
+
+        remove: function(searchParam, callback) {
+            db.remove(ClientModel, searchParam, function(result){
                 callback(result)
             })
         }

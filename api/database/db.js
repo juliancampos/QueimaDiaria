@@ -4,8 +4,18 @@ const urlConnection = config.get('database.connection_uri')
 const Mongoose = require('mongoose')
 const mongoose = Mongoose.connection
 
-const db = { save, get }
+const db = { save, get, remove }
 
+function remove(model, searchParam, callback){
+    mongoose.once('open', function(){
+        model.remove(searchParam, function(error, data){
+            if (error)
+                return console.log(error)
+            callback(data)
+        })
+    })
+    Mongoose.connect(urlConnection)
+}
 
 function get(model, searchParam, callback){
     mongoose.once('open', function(){
