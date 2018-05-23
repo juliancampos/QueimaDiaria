@@ -1,0 +1,12 @@
+MongoDB
+ + Api Rest
+Estrutura
+ + locadora(nome)
+ + catalogo(tipo)
+ + filme (nome, autor, tipo, descricao, quatidade)
+ 
+ + cliente (nome, endereco, cpf, telefone, email)
+ + filmeAlugado ()
+ + DataEntrega
+
+ + funcionario (nome, endereco, cpf, telefone, email)

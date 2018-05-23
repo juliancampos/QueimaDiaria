@@ -1,14 +1,20 @@
-const clientSchema = require('../database/schema/clientSchema')
 const Db = require('../database/db')
-
 const db = Db()
 
-const ClientService = {
-    save
-}
+const ClientSchema = require('../database/schema/clientSchema')({
+    db: db
+})
+
+const ClientService = { save, get }
 
 function save(clientModel, callback) {
-    clientSchema.save(db, clientModel, function(result){
+    ClientSchema.save(clientModel, function(result){
+        callback(result)
+    })
+}
+
+function get(searchParam, callback) {
+    ClientSchema.get(searchParam, function(result){
         callback(result)
     })
 }

@@ -4,14 +4,12 @@ const urlConnection = config.get('database.connection_uri')
 const Mongoose = require('mongoose')
 const mongoose = Mongoose.connection
 
-const db = {
-    save,
-    get
-}
+const db = { save, get }
 
-function get(model, schema, callback){
+
+function get(model, searchParam, callback){
     mongoose.once('open', function(){
-        model.find(schema, function(error, data){
+        model.find(searchParam, function(error, data){
             if (error)
                 return console.log(error)
             callback(data)
@@ -21,16 +19,19 @@ function get(model, schema, callback){
 }
 
 
-function save(model, schema, callback){
+function save(model, callback){
     mongoose.once('open', function() {
         model.save(function(error, model){
-            if (error)
-                return console.log(error)
+            if (error) {
+                console.log(error)
+                callback(error)
+            }
             callback(model)
         })
     })
     Mongoose.connect(urlConnection)
 }
+
 
 module.exports = function factory() {
     return db

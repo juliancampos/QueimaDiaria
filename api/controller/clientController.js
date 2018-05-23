@@ -6,9 +6,17 @@ const ClientController = {
     save
 }
 
+
 function get(req, resp){
-    resp.status(201).send('test get')
+    try {
+        service.get({}, function(result){
+            resp.status(201).send(result)    
+        })
+    } catch(error) {
+        resp.status(404).send(error)
+    }
 }
+
 
 function save(req, resp){
     try {
@@ -16,6 +24,7 @@ function save(req, resp){
         var client = {
             "name":"Marina Mendes"
         }
+
         service.save(client, function(result){
             resp.status(201).send(result)
         })
@@ -23,6 +32,7 @@ function save(req, resp){
         resp.status(404).send(error)
     }
 }
+
 
 module.exports = function factory(){
     return ClientController
