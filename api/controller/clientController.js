@@ -18,6 +18,15 @@ function get(req, resp){
     }
 }
 
+function find(req, resp){
+    try {
+        service.get(resp.body, function(result){
+            resp.status(200).send(result)
+        })
+    } catch(error){
+        resp.status(404).send(error)
+    }
+}
 
 function save(req, resp){
     try {
