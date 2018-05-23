@@ -1,0 +1,8 @@
+app:
+  port: 3002
+database:
+  url: queima_diaria
+  dbuser: juliancampos
+  dbpassword: queimadiaria
+  connection: 'mongo ds231740.mlab.com:31740/queima_diaria -u <dbuser> -p <dbpassword>'
+  connection_uri: 'mongodb://juliancampos:queimadiaria@ds231740.mlab.com:31740/queima_diaria'

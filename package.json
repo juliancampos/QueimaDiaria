@@ -1,0 +1,23 @@
+{
+  "name": "queimadiaria",
+  "version": "1.0.0",
+  "description": "Test to QueimaDiaria Company",
+  "main": "server.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Julian Oliveira Campos",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "config": "^1.30.0",
+    "express": "^4.16.3",
+    "js-yaml": "^3.11.0",
+    "mongoose": "^5.1.2",
+    "morgan": "^1.9.0"
+  }
+}
