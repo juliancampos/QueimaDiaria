@@ -1,12 +1,5 @@
-/*const Mongoose = require('mongoose')
-
-const clientSchema = new Mongoose.Schema({
-    name: String
-})*/
-
+const Mongoose = require('mongoose')
 const schema = require('../schema/clientSchema')
-
-
 
 function ClientModel(options){
     var db
@@ -14,7 +7,7 @@ function ClientModel(options){
         throw new Error('Options.db is required')
     }
     db = options.db
-    const ClientModel = Mongoose.model('clients', clientSchema)
+    const ClientModel = Mongoose.model('clients', schema)
 
     return {
         save: function(model, callback){

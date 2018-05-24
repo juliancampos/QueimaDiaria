@@ -1,26 +1,31 @@
 const Db = require('../database/db')
 const db = Db()
 
-const ClientSchema = require('../database/schema/clientSchema')({
+const ClientModel = require('../database/model/clientModel')({
     db: db
 })
 
-const ClientService = { save, get, remove }
 
-function save(clientModel, callback) {
-    ClientSchema.save(clientModel, function(result){
+const ClientService = {
+    save,
+    get,
+    remove
+}
+
+function save(client, callback) {
+    ClientModel.save(client, function(result){
         callback(result)
     })
 }
 
 function get(searchParam, callback) {
-    ClientSchema.get(searchParam, function(result){
+    ClientModel.get(searchParam, function(result){
         callback(result)
     })
 }
 
 function remove(searchParam, callback) {
-    ClientSchema.remove(searchParam, function(result){
+    ClientModel.remove(searchParam, function(result){
         callback(result)
     })
 }
