@@ -9,7 +9,8 @@ const ClientModel = require('../database/model/clientModel')({
 const ClientService = {
     save,
     get,
-    remove
+    remove,
+    update
 }
 
 function save(client, callback) {
@@ -26,6 +27,12 @@ function get(searchParam, callback) {
 
 function remove(searchParam, callback) {
     ClientModel.remove(searchParam, function(result){
+        callback(result)
+    })
+}
+
+function update(client, callback) {
+    ClientModel.update(client, function(result){
         callback(result)
     })
 }

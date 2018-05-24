@@ -12,5 +12,8 @@ router.route('/client/find')
 
 router.route('/client/remove')
     .post(controller.remove)
+
+router.route('/client/update')
+    .post(controller.update)
     
 module.exports = router

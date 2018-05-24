@@ -27,6 +27,19 @@ function ClientModel(options){
             db.remove(ClientModel, searchParam, function(result){
                 callback(result)
             })
+        },
+
+        update: function(model, callback) {
+            var updateClient = new ClientModel(model)
+            db.update(updateClient, function(result){
+                callback(result)
+            })
+        },
+
+        findById: function(id, callback){
+            db.update(id, function(result){
+                callback(result)
+            }) 
         }
     }
 }
