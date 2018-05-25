@@ -5,7 +5,8 @@ const ClientController = {
     get,
     save,
     remove,
-    update
+    update,
+    findById
 }
 
 
@@ -53,16 +54,26 @@ function remove(req, resp) {
 
 function update(req, resp) {
     try {
-        service.get({'_id':req.body._id}, function(client){
-            client.name = req.body.name
-            service.save(client, function(result){
-                resp.status(200).send(result)
-            })
+        client = req.body
+
+        service.update(client, function(result){
+            resp.status(200).send(result)
         })
         
     } catch(error){
         resp.status(404).send(error)
+    }    
+}
+
+function findById(req, resp){
+    try {
+        service.findById('5b05d239ec4a2e43f50b5cbd', function(result){
+            resp.status(200).send(result)
+        })
+    } catch(error){
+        resp.status(404).send(error)
     }
+
 }
 
 

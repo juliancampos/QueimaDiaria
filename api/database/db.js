@@ -4,7 +4,13 @@ const urlConnection = config.get('database.connection_uri')
 const Mongoose = require('mongoose')
 const mongoose = Mongoose.connection
 
-const db = { save, get, remove, update }
+const db = { 
+    save, 
+    get, 
+    remove, 
+    update, 
+    findById 
+}
 
 function remove(model, searchParam, callback){
     mongoose.once('open', function(){
@@ -41,9 +47,9 @@ function save(model, callback){
     Mongoose.connect(urlConnection)
 }
 
-function update(model, callback){
+function update(model, client, callback){
     mongoose.once('open', function(){
-        model.findByIdAndUpdate(model._id, {$set:{name:'julian campos'}}, function(error, model){
+        model.findByIdAndUpdate(client._id, {name: client.name}, function(error, model){
             if (error) {
                 console.log(error)
                 callback(error)
@@ -51,11 +57,12 @@ function update(model, callback){
             callback(model)
         })
     })
+    Mongoose.connect(urlConnection)
 }
 
-function findById(id, callback){
+function findById(model, id, callback){
     mongoose.once('open', function(){
-        model.findById(id, function(error, model){
+        model.find({'_id': id}, function(error, model){
             if (error) {
                 console.log(error)
                 callback(error)
@@ -63,6 +70,7 @@ function findById(id, callback){
             callback(model)
         })
     })
+    Mongoose.connect(urlConnection)
 }
 
 

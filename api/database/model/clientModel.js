@@ -30,16 +30,15 @@ function ClientModel(options){
         },
 
         update: function(model, callback) {
-            var updateClient = new ClientModel(model)
-            db.update(updateClient, function(result){
+            db.update(ClientModel, model, function(result){
                 callback(result)
             })
         },
 
         findById: function(id, callback){
-            db.update(id, function(result){
+            db.findById(ClientModel, id, function(result){
                 callback(result)
-            }) 
+            })
         }
     }
 }

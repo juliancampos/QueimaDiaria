@@ -15,5 +15,9 @@ router.route('/client/remove')
 
 router.route('/client/update')
     .post(controller.update)
+
+router.route('/client/findById')
+    .get(controller.findById)
     
+
 module.exports = router

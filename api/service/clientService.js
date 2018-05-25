@@ -10,7 +10,8 @@ const ClientService = {
     save,
     get,
     remove,
-    update
+    update,
+    findById
 }
 
 function save(client, callback) {
@@ -33,6 +34,12 @@ function remove(searchParam, callback) {
 
 function update(client, callback) {
     ClientModel.update(client, function(result){
+        callback(result)
+    })
+}
+
+function findById(id, callback){
+    ClientModel.findById(id, function(result) {
         callback(result)
     })
 }
