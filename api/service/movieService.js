@@ -9,7 +9,8 @@ const MovieModel = require('../database/model/movieModel')({
 const MovieService = {
     save,
     get,
-    remove
+    remove,
+    update
 }
 
 function save(movie, callback) {
@@ -26,6 +27,12 @@ function get(searchParam, callback) {
 
 function remove(searchParam, callback) {
     MovieModel.remove(searchParam, function(result){
+        callback(result)
+    })
+}
+
+function update(movie, callback){
+    MovieModel.update(movie, function(result){
         callback(result)
     })
 }

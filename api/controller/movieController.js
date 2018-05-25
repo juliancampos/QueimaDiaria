@@ -4,9 +4,22 @@ const service = Service()
 const MovieController = {
     get,
     save,
-    remove
+    remove,
+    update,
+    findBy
 }
 
+
+function findBy(req, resp){
+    try {
+        movieSearch = req.body
+        service.get(movieSearch, function(result){
+            resp.status(200).send(result)
+        })
+    } catch(error) {
+        resp.status(404).send(error)
+    }
+}
 
 function get(req, resp){
     try {
@@ -43,6 +56,17 @@ function remove(req, resp) {
     try {
         movie = { "_id": req.body.id }
         service.remove(movie, function(result){
+            resp.status(200).send(result)
+        })
+    } catch(error) {
+        resp.status(404).send(error)
+    }
+}
+
+function update(req, resp){
+    try {
+        movie = req.body
+        service.update(movie, function(result){
             resp.status(200).send(result)
         })
     } catch(error) {

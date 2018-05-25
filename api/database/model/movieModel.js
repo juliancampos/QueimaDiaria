@@ -27,6 +27,12 @@ function MovieModel(options){
             db.remove(MovieModel, searchParam, function(result){
                 callback(result)
             })
+        },
+        
+        update: function(model, callback) {
+            db.update(MovieModel, model, function(result){
+                callback(result)
+            })
         }
     }
 }

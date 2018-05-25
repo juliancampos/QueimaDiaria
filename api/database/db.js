@@ -49,12 +49,12 @@ function save(model, callback){
 
 function update(model, client, callback){
     mongoose.once('open', function(){
-        model.findByIdAndUpdate(client._id, {name: client.name}, function(error, model){
+        model.findByIdAndUpdate(client._id, client, function(error, client){
             if (error) {
                 console.log(error)
                 callback(error)
             }
-            callback(model)
+            callback(client)
         })
     })
     Mongoose.connect(urlConnection)

@@ -4,20 +4,22 @@ const Controller = require('../controller/clientController')
 const router = express.Router()
 const controller = Controller()
 
-router.route('/client/save')
+router.route('/save')
     .post(controller.save)
 
-router.route('/client/find')
+router.route('/get')
     .get(controller.get)
 
-router.route('/client/remove')
+router.route('/remove')
     .post(controller.remove)
 
-router.route('/client/update')
+router.route('/update')
     .post(controller.update)
 
-router.route('/client/findById')
+router.route('/findById')
     .get(controller.findById)
-    
+
+router.route('/findBy')
+    .post(controller.findBy)    
 
 module.exports = router

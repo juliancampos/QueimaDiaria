@@ -6,7 +6,8 @@ const ClientController = {
     save,
     remove,
     update,
-    findById
+    findById,
+    findBy
 }
 
 
@@ -73,7 +74,17 @@ function findById(req, resp){
     } catch(error){
         resp.status(404).send(error)
     }
+}
 
+function findBy(req, resp){
+    try {
+        client = req.body
+        service.get(client, function(result){
+            resp.status(200).send(result)
+        })
+    } catch(error) {
+        resp.status(404).send(error)
+    }
 }
 
 

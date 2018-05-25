@@ -4,13 +4,19 @@ const Controller = require('../controller/movieController')
 const router = express.Router()
 const controller = Controller()
 
-router.route('/movie/save')
+router.route('/save')
     .post(controller.save)
 
-router.route('/movie/find')
+router.route('/find')
     .get(controller.get)
 
-router.route('/movie/remove')
+router.route('/remove')
     .post(controller.remove)
-    
+
+router.route('/update')
+    .post(controller.update)
+
+router.route('/findBy')
+    .post(controller.findBy)
+
 module.exports = router

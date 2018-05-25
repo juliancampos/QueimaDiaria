@@ -14,8 +14,8 @@ app.use(bodyParser.json())
 app.use(morgan(':method :url :response-time'))
 
 
-app.use('/api', clientRoute)
-app.use('/api', movieRoute)
+app.use('/api/client', clientRoute)
+app.use('/api/movie', movieRoute)
 
 app.set('port', config.get('app.port'))
 app.listen(app.get('port'), () => {
