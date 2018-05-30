@@ -4,7 +4,8 @@ const movieSchema = new Mongoose.Schema({
     name: String,
     type: String,
     director: String,
-    resume: String
+    resume: String,
+    quantity: String
 })
 
 module.exports = movieSchema

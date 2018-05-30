@@ -10,7 +10,21 @@ const MovieService = {
     save,
     get,
     remove,
-    update
+    update,
+    findById,
+    findSearch
+}
+
+function findSearch(searchParam, callback){
+    MovieModel.findSearch(searchParam, function(result){
+        callback(result)
+    })
+}
+
+function findById(id, callback){
+    MovieModel.findById(id, function(result){
+        callback(result)
+    })
 }
 
 function save(movie, callback) {

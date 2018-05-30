@@ -1,42 +1,48 @@
 const Mongoose = require('mongoose')
-const schema = require('../schema/clientSchema')
+const schema = require('../schema/userSchema')
 
-function ClientModel(options){
+function UserModel(options){
     var db
     if (!options.db) {
         throw new Error('Options.db is required')
     }
     db = options.db
-    const ClientModel = Mongoose.model('clients', schema)
+    const UserModel = Mongoose.model('users', schema)
 
     return {
         save: function(model, callback){
-            var newClient = new ClientModel(model)
-            db.save(newClient, function(result){
+            var newUser = new UserModel(model)
+            db.save(newUser, function(result){
                 callback(result)
             })
         },
 
         get: function(searchParam, callback){
-            db.get(ClientModel, searchParam, function(result){
+            db.get(UserModel, searchParam, function(result){
                 callback(result)
             })
         },
 
         remove: function(searchParam, callback) {
-            db.remove(ClientModel, searchParam, function(result){
+            db.remove(UserModel, searchParam, function(result){
                 callback(result)
             })
         },
 
         update: function(model, callback) {
-            db.update(ClientModel, model, function(result){
+            db.update(UserModel, model, function(result){
                 callback(result)
             })
         },
 
         findById: function(id, callback){
-            db.findById(ClientModel, id, function(result){
+            db.findById(UserModel, id, function(result){
+                callback(result)
+            })
+        },
+
+        findSearch: function(search, callback) {
+            db.findSearch(UserModel, search, function(result){
                 callback(result)
             })
         }
@@ -44,4 +50,4 @@ function ClientModel(options){
 }
 
 
-module.exports = ClientModel
+module.exports = UserModel

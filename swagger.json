@@ -1,0 +1,529 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "QueimaDiaria Service",
+        "description": "API Queima Diaria",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3002",
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "Queima Diaria",
+            "description": "API"
+        }
+    ],
+    "schemes": [ "http" ],
+    "consumes": [ "application/json" ],
+    "produces": [ "application/json" ],
+    "paths": {
+        "/user/signIn": {
+            "post": {
+                "tags": [ "Login" ],
+                "summary": "login on software",
+                "description": "login on software",
+                "parameters": [
+                    {
+                        "name": "login",
+                        "in": "body",
+                        "description": "email and password",
+                        "schema": { "$ref": "#/definitions/Login"}
+                    }
+                ],
+                "produces": [ "application/json" ],
+                "responses": {
+                    "200": {
+                        "description": "Login correct",
+                        "schema":{
+                            "type":"string"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/user": {
+            "get":{
+                "tags":[ "Users"],
+                "summary": "Get users from database",
+                "parameters":[
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": { "$ref": "#/definitions/Users" }
+                    }
+                }
+            },
+            "post": {
+                "tags": [ "Users" ],
+                "summary": "Save user",
+                "description": "Create user on database",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User to create",
+                        "schema": { "$ref": "#/definitions/User"}
+                    },
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "produces": [ "application/json" ],
+                "responses": {
+                    "200": {
+                        "description": "New user created",
+                        "schema": { "$ref":"#/definitions/User" }
+                    }
+                }
+            },
+            "put": {
+                "tags": [ "Users" ],
+                "summary": "Update user",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User to update",
+                        "schema": { "$ref": "#/definitions/UpdateUser"}
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [ "Users" ],
+                "summary": "Delete user",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name":"Delete User",
+                        "in": "body",
+                        "description": "user to delete",
+                        "schema": { "$ref":"#/definitions/RemoveUser"}
+                    }
+                ]
+            }
+        },
+
+        "/user/{userId}": {
+            "get":{
+                "tags":[ "Users"],
+                "summary": "Get user by id from database",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of user that we want to find",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/user/findBy": {
+            "post": {
+                "tags": [ "Users" ],
+                "tags":[ "Users"],
+                "summary": "Get user by id from database",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User to find",
+                        "schema": { "$ref": "#/definitions/FindUser"}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/user/:userId/movie": {
+            "post": {
+                "tags":[ "Rentals"],
+                "summary": "Rent movie",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "movie",
+                        "in": "body",
+                        "description": "",
+                        "schema":{ "$ref": "#/definitions/UpdateMovie" }
+                    }
+                ], 
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+
+            },
+            "delete": {
+                "tags":[ "Users"],
+                "summary": "Get users with devolution late",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "movie",
+                        "in": "body",
+                        "description": "",
+                        "schema":{ "$ref": "#/definitions/DeliverMovie" }
+                    }
+                ], 
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/user/usersWithRentedMovie": {
+            "get": {
+                "tags":[ "Rentals"],
+                "summary": "Get users with rented movies",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/user/lateDevolution": {
+            "get": {
+                "tags":[ "Rentals"],
+                "summary": "Get users with devolution late",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/movie": {
+            "get": {
+                "tags": [ "Movie" ],
+                "summary": "Get movies from database",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": { "$ref": "#/definitions/Movies" }
+                    }
+                }
+            },
+            "post": {
+                "tags": [ "Movie" ],
+                "summary": "Save movie",
+                "description": "Save a new movie",
+                "parameters": [
+                    {
+                        "name": "movie",
+                        "in": "body",
+                        "description": "Movie to create",
+                        "schema": { "$ref": "#/definitions/Movie"}
+                    },
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": { "$ref": "#/definitions/Movie" }
+                    }
+                }
+            },
+            "put": {
+                "tags":[ "Movie" ],
+                "summary": [ "Update movie" ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "movie",
+                        "in": "body",
+                        "description": "Movie to update",
+                        "schema": { "$ref": "#/definitions/UpdateMovie"}
+                    }
+                 ]
+
+            },
+            "delete": {
+                "tags": [ "Movie" ],
+                "summary": "Delete movie",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Delete Movie",
+                        "in": "body",
+                        "description": "movie to delete",
+                        "schema": { "$ref": "#/definitions/RemoveMovie"}
+                    }
+                ]
+            }
+        },
+
+        "/movie/findBy": {
+            "post": {
+                "tags": [ "Movie" ],
+                "summary": "Find movie",
+                "description": "Find movie on database",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "movie",
+                        "in": "body",
+                        "description": "Movie to find",
+                        "schema": { "$ref": "#/definitions/Movie"}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": { "$ref": "#/definitions/Movie" }
+                    }
+                }
+
+            }
+        },
+        "/movie/findById/{movieId}": {
+            "get": {
+                "tags": [ "Movie" ],
+                "summary": "Get movies from id",
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "authorization header",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "movieId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of movie that we want to find",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": { "$ref": "#/definitions/Movies" }
+                    }
+                }
+            }
+        }
+    }, 
+    "definitions": {
+        "Users": {
+            "type": "array",
+            "$ref": "#/definitions/User"
+        },
+        "User": {
+            "properties": {
+                "name":     { "type": "string" },
+                "type":     { "type": "string" },
+                "cpf":      { "type": "string" },
+                "email":    { "type": "string" },
+                "celphone": { "type": "string" },
+                "password": { "type": "string" }
+            }
+        },
+        "UpdateUser": {
+            "properties": {
+                "_id":      { "type": "string" },
+                "name":     { "type": "string" },
+                "type":     { "type": "string" },
+                "cpf":      { "type": "string" },
+                "email":    { "type": "string" },
+                "celphone": { "type": "string" }
+            }
+        },
+        "FindUser": {
+            "properties": {
+                "name":     { "type": "string" },
+                "cpf":      { "type": "string" },
+                "email":    { "type": "string" },
+                "celphone": { "type": "string" }
+            }
+        },
+
+        "Login": {
+            "properties": {
+                "email": { "type": "string"},
+                "password": { "type": "string"}
+            }
+        },
+        "RemoveUser": {
+            "properties": { 
+                "id": { "type": "string" }
+            }
+        },
+        "Movie": {
+            "properties": {
+                "name":     { "type": "string" },
+                "type":     { "type": "string" },
+                "director": { "type": "string" },
+                "resume":   { "type": "string" },
+                "quantity": { "type": "string" }
+            }
+        },
+        "Movies": {
+            "type": "array",
+            "$ref": "#/definitions/Movie"
+        },
+        "RemoveMovie": {
+            "properties": { 
+                "id": { "type": "string" }
+            }
+        },
+        "UpdateMovie": {
+            "properties": {
+                "_id":      { "type": "string" },
+                "name":     { "type": "string" },
+                "type":     { "type": "string" },
+                "director": { "type": "string" },
+                "resume":   { "type": "string" },
+                "quantity": { "type": "string" }
+            }
+        },
+        "DeliverMovie": {
+            "properties": {
+                "movieId": { "type": "string" }
+            }
+        }
+    }
+}
+

@@ -33,6 +33,18 @@ function MovieModel(options){
             db.update(MovieModel, model, function(result){
                 callback(result)
             })
+        },
+
+        findById: function(id, callback) {
+            db.findById(MovieModel, id, function(result){
+                callback(result)
+            })
+        },
+
+        findSearch: function(search, callback) {
+            db.findSearch(MovieModel, search, function(result){
+                callback(result)
+            })
         }
     }
 }

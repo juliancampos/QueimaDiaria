@@ -6,13 +6,33 @@ const MovieController = {
     save,
     remove,
     update,
-    findBy
+    findBy,
+    findById
 }
 
+function findById(req, resp){
+    try {
+        service.findById(req.params.movieId, function(result){
+            resp.status(200).send(result)
+        })
+    } catch(error){
+        resp.status(404).send(error)
+    }
+}
 
 function findBy(req, resp){
     try {
-        movieSearch = req.body
+        movieSearch = {}
+        
+        if (req.body.name.length > 0)
+            movieSearch.name = {$regex: req.body.name}
+
+        if (req.body.type.length > 0)
+            movieSearch.type = {$regex: req.body.type}
+
+        if (req.body.director.length > 0)
+            movieSearch.director = {$regex: req.body.director}
+
         service.get(movieSearch, function(result){
             resp.status(200).send(result)
         })
