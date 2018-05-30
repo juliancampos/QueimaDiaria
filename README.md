@@ -30,18 +30,18 @@ separadas, estas se encontram na pasta './api/routes'
 Cada módulo contém seus controllers, services e routes.
 
 #### Detalhes ####
-* Foi utilizado o banco de dados MongoDB na plataforma MLAB e Mongoose para realizar as acoes no banco
-* Para proteçao das rotas, foi utilizada a biblioteca jwt. 
-  Sempre que o usuario realizar o login no sistema, sera gerado um token para que o mesmo consiga
+* Foi utilizado o banco de dados MongoDB na plataforma MLAB e Mongoose para realizar as ações no banco
+* Para proteção das rotas, foi utilizada a biblioteca jwt. 
+  Sempre que o usuario realizar o login no sistema, será gerado um token para que o mesmo consiga
   utilizar o software.
-  As permissoes sao de acordo com o tipo do usuario(admin ou common)
-* Para facilitar alteraçoes como url de banco de dados, token key (utilizado na criacao do token do usuario),
-  configuracao de porta de acesso a sistema, foi utilizada a biblioteca js-yaml. Com esta biblioteca,
-  estas configuracoes sao realizadas no arquivo conf/default.yml
-* Para manter a senha do usuario em sigilo, foi utilizada a biblioteca bcrypt para que a senha seja
+  As permissões são de acordo com o tipo do usuário (admin ou common)
+* Para facilitar alterações como url de banco de dados, token key (utilizado na criação do token do usuário),
+  configuração de porta de acesso a sistema, foi utilizada a biblioteca js-yaml. Com esta biblioteca,
+  estas configurações são realizadas no arquivo config/default.yml
+* Para manter a senha do usuário em sigilo, foi utilizada a biblioteca bcrypt para que a senha seja
   criptografada ao ser criada e registrada no banco de dados.
-* Para facilitar a instalacao, foi disponibilizado o acesso ao software atraves do Docker, que consiste em 
-  criar e executar um ambiente para a execucao do software.
+* Para facilitar a instalação, foi disponibilizado o acesso ao software através do Docker, que consiste em 
+  criar e executar um ambiente para a execução do software.
 
 #### Execução ####
 Opção 1
@@ -51,8 +51,8 @@ Opção 1
 Opção 2
  * Para execução do software devem ser instalados NodeJS.
  * Após realizar o download do software, na raiz do projeto devem ser executados os comandos:
-* npm install
-* node server.js
+ * npm install
+ * node server.js
 
 #### Acesso ao Swagger ####
 * localhost:3002/swagger
