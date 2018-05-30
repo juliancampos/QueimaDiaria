@@ -44,13 +44,14 @@ Cada módulo contém seus controllers, services e routes.
   criar e executar um ambiente para a execucao do software.
 
 #### Execução ####
+Opção 1
+ * docker build -t <username>/queima-diaria .
+ * docker run -p 3002:3002 -d <username>/queima-diaria
 
-docker build -t julian/queima-diaria .
-docker run -p 3002:3002 -d julian/queima-diaria
-
-Para execução do software devem ser instalados NodeJS.
-Após realizar o download do software, deve ser executado o comando:
-
+Opção 2
+ * Para execução do software devem ser instalados NodeJS.
+ * Após realizar o download do software, na raiz do projeto devem ser executados os comandos:
+* npm install
 * node server.js
 
 #### Acesso ao Swagger ####
